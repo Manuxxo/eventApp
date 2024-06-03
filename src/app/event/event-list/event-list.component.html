@@ -1,1 +1,45 @@
-<p>event-list works!</p>
+<div *ngIf="loading">
+  <app-loader></app-loader>
+</div>
+<div class="container mx-auto px-4" *ngIf="!loading">
+    <h2 class="text-2xl font-bold my-6 text-center">Lista de eventos</h2>
+    <div class="mb-4 text-right">
+      <button class="text-white font-bold py-2 px-4 rounded bg-primary-color" (click)="newEvent()">Nuevo evento</button>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="table-auto w-full bg-white shadow-md rounded-lg overflow-hidden">
+        <thead>
+          <tr class="bg-primary-color text-white">
+            <th class="px-4 py-2 text-left">Nombre</th>
+            <th class="px-4 py-2 text-left">Fecha</th>
+            <th class="px-4 py-2 text-left">Ubicación</th>
+            <th class="px-4 py-2 text-left">Descripción</th>
+            <th class="px-4 py-2 text-left">Invitados</th>
+            <th class="px-4 py-2 text-left"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let event of events" class="border-b hover:bg-gray-100">
+            <td class="px-4 py-2">{{ event.name }}</td>
+            <td class="px-4 py-2">{{ event.date | date: 'dd/MM/yy' }}</td>
+            <td class="px-4 py-2">{{ event.location }}</td>
+            <td class="px-4 py-2">
+              {{ event.description | slice:0:50 }}{{ event.description.length > 50 ? '...' : '' }}
+              <button *ngIf="event.description.length > 50" (click)="toggleDescription(event)" class="text-blue-500 ml-2">
+                {{ event.showFullDescription ? 'Ver menos' : 'Ver más' }}
+              </button>
+              <div *ngIf="event.showFullDescription">{{ event.description }}</div>
+            </td>
+            <td class="px-4 py-2">{{ event.guests.length }}</td>
+            <td class="px-4 py-2 flex space-x-2">
+              <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600" (click)="onDelete(event.id)">Eliminar</button>
+              <button class="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600" (click)="onEdit(event.id)">Editar</button>
+              <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600" (click)="onSendReminder(event.id)">Recordatorio</button>
+              <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600" (click)="onGuestManagement(event.id)">Lista de ventas</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

@@ -1,0 +1,28 @@
+<div class="container mx-auto px-4 py-8">
+    <div class="relative bg-cover bg-center h-64 rounded-lg mb-8" style="background-image: url('../../assets/bg.webp');">
+      <div class="absolute inset-0 bg-black bg-opacity-50 rounded-lg"></div>
+      <div class="relative z-10 p-6">
+        <h1 class="text-white text-4xl font-bold">Los mejores eventos en</h1>
+        <h2 class="text-white text-5xl font-bold mt-2">Sevilla</h2>
+        <p class="text-white text-lg mt-4">Encuentra los mejores planes para hacer en Sevilla esta semana y descubre todas las novedades con EventApp.</p>
+        <div class="mt-4">
+          <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg">Sevilla</button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="mb-8">
+      <h3 class="text-2xl font-bold mb-4">Eventos populares en Sevilla</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <app-event-card *ngFor="let event of events" [event]="event"></app-event-card>
+      </div>
+    </div>
+    
+    <div class="mb-8">
+      <h3 class="text-2xl font-bold mb-4">Todos los eventos en Sevilla</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <app-event-card *ngFor="let event of allEvents" [event]="event"></app-event-card>
+      </div>
+    </div>
+  </div>
+  

@@ -1,1 +1,58 @@
-<p>event-detail works!</p>
+<div *ngIf="loading">
+  <app-loader></app-loader>
+</div>
+<div class="container mx-auto px-4 py-8" *ngIf="!loading">
+  <div *ngIf="event" class="bg-white shadow-md rounded-lg p-6">
+    <h2 class="text-4xl font-bold mb-16 text-center" [ngStyle]="{'color': 'rgb(31,41,55)'}">{{ event.name }}</h2>
+    <img [src]="event.image" alt="{{ event.name }}" class="w-full h-64 object-cover rounded-lg mb-4">
+    <p class="text-gray-700 text-lg" [ngStyle]="{'color': 'rgb(31,41,55)'}">{{ event.description }}</p>
+    <p class="primary-color mt-4" [ngStyle]="{'color': 'rgb(31,41,55)'}"><strong>Fecha:</strong> {{ event.date | date: 'dd/MM/yy' }}</p>
+    <p class="primary-color mt-2" [ngStyle]="{'color': 'rgb(31,41,55)'}"><strong>Hora:</strong> {{ event.date | date: 'shortTime' }}</p>
+    <p class="primary-color mt-2" [ngStyle]="{'color': 'rgb(31,41,55)'}"><strong>Ubicación:</strong> {{ event.location }}</p>
+    <p class="primary-color mt-2" [ngStyle]="{'color': 'rgb(31,41,55)'}"><strong>Precio:</strong> {{ event.price ? event.price + '€' : 'Gratis' }}</p>
+    <div class="countdown">
+      <p class="primary-color mt-4" [ngStyle]="{'color': 'rgb(31,41,55)'}"><strong>Tiempo restante:</strong></p>
+      <p>{{ timeRemaining }}</p>
+    </div>
+    <div class="flex justify-center mt-4">
+      <button (click)="onBuyTicket()" class="bg-primary-color text-white font-bold py-2 px-4 rounded-lg">Comprar Entrada</button>
+    </div>
+  </div>
+  <div class="flex justify-center mt-4 space-x-4">
+    <a href="https://facebook.com/sharer/sharer.php?u={{ eventUrl }}" target="_blank" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg"> <i class="fab fa-facebook-f"></i></a>
+    <a href="https://twitter.com/intent/tweet?url={{ eventUrl }}&text={{ event.name }}" target="_blank" class="bg-blue-400 text-white font-bold py-2 px-4 rounded-lg"> <i class="fab fa-twitter"></i></a>
+    <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ eventUrl }}" target="_blank" class="bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"> <i class="fab fa-linkedin-in"></i></a>
+    <a href="https://www.instagram.com/" target="_blank" class="bg-pink-500 text-white font-bold py-2 px-4 rounded-lg"><i class="fab fa-instagram"></i></a>
+  </div>
+
+  <div class="mt-8">
+    <h3 class="text-2xl font-bold mb-4">Información Adicional</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="bg-white shadow-md rounded-lg p-4">
+        <h4 class="text-xl font-bold mb-2" [ngStyle]="{'color': 'rgb(31,41,55)'}">Reglas del Evento</h4>
+        <div class="primary-color" [ngStyle]="{'color': 'rgb(31,41,55)'}"> 
+          <ul class="list-disc pl-5">
+            <li>No se permite el acceso con objetos punzantes o armas de cualquier tipo.</li>
+            <li>Se recomienda mantener el distanciamiento social de al menos 1.5 metros.</li>
+            <li>No se permiten mascotas, excepto perros guía.</li>
+            <li>Está prohibido fumar dentro del recinto del evento.</li>
+            <li>El reembolso de entradas solo se realizará en caso de cancelación del evento.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="bg-white shadow-md rounded-lg p-4">
+        <h4 class="text-xl font-bold mb-2" [ngStyle]="{'color': 'rgb(31,41,55)'}">Información de Contacto</h4>
+        <div class="primary-color" [ngStyle]="{'color': 'rgb(31,41,55)'}">
+          <strong>Organizador:</strong> EventApp<br>
+          <strong>Correo Electrónico:</strong> contacto&#64;eventApp.com<br>
+          <strong>Teléfono:</strong> +34 123 456 789<br>
+          <strong>Redes Sociales:</strong><br>
+          <a href="https://facebook.com/eventapp" target="_blank" class="text-blue-500">Facebook</a><br>
+          <a href="https://twitter.com/eventapp" target="_blank" class="text-blue-400">Twitter</a><br>
+          <a href="https://instagram.com/eventapp" target="_blank" class="text-pink-500">Instagram</a><br>
+          <strong>Página Web: </strong> <a href="https://eventapp.com" target="_blank" class="text-primary-color">eventapp.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.table-auto {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-auto th, .table-auto td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.flex {
+    display: flex;
+}
+
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+    margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+button {
+    cursor: pointer;
+}
+
+button.bg-red-500:hover {
+    background-color: #f13333;
+}
+
+button.bg-yellow-500:hover {
+    background-color: #d69e2e;
+}
+
+button.bg-green-500:hover {
+    background-color: #38a169;
+}

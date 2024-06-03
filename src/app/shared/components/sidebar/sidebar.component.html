@@ -1,0 +1,16 @@
+<div *ngIf="loading">
+  <app-loader></app-loader>
+</div>
+<div class="h-full w-48 bg-gray-800 text-white flex flex-col">
+  <nav class="flex-1">
+    <ul>
+      <li class="p-4 hover:bg-gray-700">
+        <a (click)="goToHome()" class="block px-2 py-1">Inicio</a>
+      </li>
+      <li class="p-4 hover:bg-gray-700" *ngIf="isLogged">
+        <a (click)="goToEvent()" class="block px-2 py-1">Eventos</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+  

@@ -1,0 +1,13 @@
+<div *ngIf="loading">
+  <app-loader></app-loader>
+</div>
+<header class="bg-gray-800 text-white p-4 flex justify-between items-center">
+    <div class="flex items-center ml-10">
+      <img src="assets/logo.png" alt="Logo" class="h-10">
+    </div>
+    <nav class="mr-10">
+      <button *ngIf="isLogged" (click)="logout()">Cerrar sesión</button>
+      <button *ngIf="!isLogged" (click)="logout()">Iniciar sesión</button>
+    </nav>
+</header>
+  

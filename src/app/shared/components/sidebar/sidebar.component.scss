@@ -1,0 +1,30 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 12rem;
+    background-color: #1a202c;
+    color: white;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  nav li {
+    padding: 0.5rem;
+  }
+  
+  nav li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    padding: 0.5rem 1rem;
+  }
+  
+  nav li a:hover {
+    background-color: #2d3748;
+  }
+  
