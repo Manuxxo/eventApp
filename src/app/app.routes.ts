@@ -64,9 +64,24 @@ export const routes: Routes = [
         canActivate: [authGuard],
     },
     {
+        path: 'complete',
+        loadComponent: () =>
+            import('./shared/pages/complete/complete.component').then(
+                (m) => m.CompleteComponent
+            ),
+    },
+    {
+        path: 'error',
+        loadComponent: () =>
+            import('./shared/pages/error/error.component').then(
+                (m) => m.ErrorComponent
+            ),
+    },
+   
+    {
         path: 'ticket-purchase/:id',
         loadComponent: () =>
-            import('./purchase/ticket-purchase/ticket-purchase.component').then(
+            import('./ticket-purchase/ticket-purchase.component').then(
                 (m) => m.TicketPurchaseComponent 
             ),
     },

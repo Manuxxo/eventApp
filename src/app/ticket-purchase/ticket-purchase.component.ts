@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EventService } from '../../service/event.service';
+import { EventService } from '../service/event.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { GuestService } from '../../service/guest.service';
-import { Guest } from '../../models/guest';
-import { PaypalComponent } from '../../shared/components/paypal/paypal.component';
+import { GuestService } from '../service/guest.service';
+import { Guest } from '../models/guest';
+import { PaypalComponent } from '../shared/components/paypal/paypal.component';
 
 @Component({
   selector: 'app-ticket-purchase',
@@ -50,7 +50,7 @@ export class TicketPurchaseComponent implements OnInit {
     this.eventService.addGuest(this.event.id, guest).subscribe(
       () => {
         console.log('Guest added and confirmation email sent');
-        this.router.navigate(['/confirmation']);
+        this.router.navigate(['/complete']);
       },
       error => console.error('Error adding guest', error)
     );

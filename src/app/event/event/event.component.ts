@@ -45,12 +45,12 @@ export class EventComponent  implements OnInit {
     this.loading = true;
     if (this.isEditMode) {
       this.eventService.updateEvent(this.event.id, this.event).subscribe(
-        () => this.router.navigate(['/event-list']),
+        () => this.router.navigate(['/event/event-list']),
         error => console.error('Error updating event', error)
       );
     } else {
       this.eventService.createEvent(this.event).subscribe(
-        () => this.router.navigate(['/event-list']),
+        () => this.router.navigate(['/event/event-list']),
         error => console.error('Error creating event', error)
       );
     }
