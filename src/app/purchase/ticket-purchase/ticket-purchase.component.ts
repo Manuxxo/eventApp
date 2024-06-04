@@ -5,21 +5,23 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { GuestService } from '../../service/guest.service';
 import { Guest } from '../../models/guest';
+import { PaypalComponent } from '../../shared/components/paypal/paypal.component';
 
 @Component({
   selector: 'app-ticket-purchase',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PaypalComponent],
   templateUrl: './ticket-purchase.component.html',
   styleUrl: './ticket-purchase.component.scss'
 })
 export class TicketPurchaseComponent implements OnInit {
   event: any;
+  formSubmitted = false;
   purchase: Guest = {
-    id: "string",
-    name: "string",
-    email: "xasokem897@fresec.com",
-    status: "string"
+    id: "",
+    name: "",
+    email: "",
+    status: ""
   }
 
   constructor(
@@ -37,6 +39,7 @@ export class TicketPurchaseComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.formSubmitted = true;
     const guest = {
       id: "string",
       name: this.purchase.name,

@@ -66,15 +66,15 @@
           <div class="mb-4">
             <p class="text-gray-700"><strong>Precio de la entrada:</strong> {{ event.price ? event.price+'€' : 'Gratis' }} </p>
             <p class="text-gray-700"><strong>Gastos de gestión:</strong>{{ event.price ? ' 2.50€' : '0.00€' }}</p>
-            <p class="text-gray-700"><strong>Total:</strong> {{ event.price ? event.price + 2.50 : '0.00€' }}</p>
+            <p class="text-gray-700"><strong>Total:</strong> {{ event.price ? event.price + 2.50 + "€" : '0.00€' }}</p>
           </div>
-          <button
+          <button  *ngIf="event.price < 0"
             type="submit"
-            class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
-            [disabled]="!purchaseForm.form.valid"
-          >
+            class="w-full bg-primary-color text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+            [disabled]="!purchaseForm.form.valid">
             Confirmar Compra
           </button>
+          <app-paypal *ngIf="event.price > 0" [event]="event" disabled="!purchaseForm.form.valid"></app-paypal>
         </form>
       </div>
       <div class="bg-white shadow-md rounded-lg p-6">
@@ -98,6 +98,3 @@
       </div>
     </div>
 </div>
-
-<!-- FontAwesome para los iconos -->
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
