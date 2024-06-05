@@ -6,16 +6,18 @@ import { FormsModule } from '@angular/forms';
 import { GuestService } from '../service/guest.service';
 import { Guest } from '../models/guest';
 import { PaypalComponent } from '../shared/components/paypal/paypal.component';
+import { LoaderComponent } from '../shared/components/loader/loader.component';
 
 @Component({
   selector: 'app-ticket-purchase',
   standalone: true,
-  imports: [CommonModule, FormsModule, PaypalComponent],
+  imports: [CommonModule, FormsModule, PaypalComponent, LoaderComponent],
   templateUrl: './ticket-purchase.component.html',
   styleUrl: './ticket-purchase.component.scss'
 })
 export class TicketPurchaseComponent implements OnInit {
   event: any;
+  loading = true;
   formSubmitted = false;
   purchase: Guest = {
     id: "",
@@ -40,6 +42,7 @@ export class TicketPurchaseComponent implements OnInit {
 
   onSubmit(): void {
     this.formSubmitted = true;
+    this.loading = true;
     const guest = {
       id: "string",
       name: this.purchase.name,
@@ -49,7 +52,6 @@ export class TicketPurchaseComponent implements OnInit {
 
     this.eventService.addGuest(this.event.id, guest).subscribe(
       () => {
-        console.log('Guest added and confirmation email sent');
         this.router.navigate(['/complete']);
       },
       error => console.error('Error adding guest', error)

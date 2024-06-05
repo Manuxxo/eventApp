@@ -3,11 +3,15 @@ import { EventService } from '../../service/event.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { LoaderComponent } from '../../shared/components/loader/loader.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-event-list',
   standalone: true,
-  imports: [CommonModule, LoaderComponent],
+  imports: [CommonModule, LoaderComponent, MatMenuModule, MatButtonModule, MatIconModule],
   templateUrl: './event-list.component.html',
   styleUrl: './event-list.component.scss'
 })
