@@ -4,11 +4,12 @@ import { EventService } from '../../service/event.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Subscription, interval } from 'rxjs';
 import { LoaderComponent } from '../../shared/components/loader/loader.component';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-event-detail',
   standalone: true,
-  imports: [CommonModule, DatePipe, LoaderComponent],
+  imports: [CommonModule, DatePipe, LoaderComponent, MatIcon],
   templateUrl: './event-detail.component.html',
   styleUrl: './event-detail.component.scss'
 })
@@ -66,5 +67,10 @@ export class EventDetailComponent implements OnInit, OnDestroy  {
   onBuyTicket(): void {
     this.loading = true;
     this.router.navigate(['/ticket-purchase', this.event.id]);    
+  }
+
+  goBack(){
+    this.loading = true;
+    this.router.navigate(['/home']); 
   }
 }

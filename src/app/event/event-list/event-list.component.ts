@@ -17,7 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class EventListComponent {
   events: any[] = [];
-  loading = true;
+  loading = false;
 
   constructor(private eventService: EventService,
     private router: Router
@@ -31,12 +31,12 @@ export class EventListComponent {
     await this.eventService.getEvents().subscribe(
       (data: any[]) => {
         this.events = data;
-        this.loading = false;
       },
       error => {
         console.error('Error fetching events', error);
       }
     );
+    this.loading = false;
   }
 
   toggleDescription(event: any) {

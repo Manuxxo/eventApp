@@ -3,6 +3,9 @@
       <div class="lg:col-span-2 bg-white shadow-md rounded-lg p-6">
         <h2 class="text-2xl font-bold mb-4">Comprar Entrada</h2>
         <form (ngSubmit)="onSubmit()" #purchaseForm="ngForm">
+          <button class="bg-primary-color text-white font-bold py-2 px-4 rounded-lg flex items-center justify-center" (click)="goBack()">
+            <mat-icon class="mr-2">arrow_back</mat-icon> Volver
+          </button>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div class="mb-4 sm:mb-0">
               <label for="name" class="block text-gray-700 font-medium mb-1">

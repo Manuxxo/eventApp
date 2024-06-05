@@ -26,12 +26,16 @@ export class SidebarComponent implements OnInit{
   goToEvent(){
     this.loading = true;
     this.router.navigate(['/event/event-list']);
-    this.loading = false;
+    setTimeout(() => {
+      this.loading = false;
+    }, 500)
   }
 
   goToHome(){
     this.loading = true;
     this.router.navigate(['/home']);
-    this.loading = false;
+    setTimeout(() => {
+      this.loading = false;
+    }, 500)
   }
 }

@@ -4,11 +4,12 @@ import { EventService } from '../../service/event.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LoaderComponent } from '../../shared/components/loader/loader.component';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-event',
   standalone: true,
-  imports: [CommonModule, FormsModule, LoaderComponent],
+  imports: [CommonModule, FormsModule, LoaderComponent, MatIcon],
   templateUrl: './event.component.html',
   styleUrl: './event.component.scss'
 })
@@ -54,5 +55,10 @@ export class EventComponent  implements OnInit {
         error => console.error('Error creating event', error)
       );
     }
+  }
+
+  goBack(){
+    this.loading = true;
+    this.router.navigate(['/home']); 
   }
 }

@@ -7,11 +7,12 @@ import { GuestService } from '../service/guest.service';
 import { Guest } from '../models/guest';
 import { PaypalComponent } from '../shared/components/paypal/paypal.component';
 import { LoaderComponent } from '../shared/components/loader/loader.component';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-ticket-purchase',
   standalone: true,
-  imports: [CommonModule, FormsModule, PaypalComponent, LoaderComponent],
+  imports: [CommonModule, FormsModule, PaypalComponent, LoaderComponent, MatIcon],
   templateUrl: './ticket-purchase.component.html',
   styleUrl: './ticket-purchase.component.scss'
 })
@@ -38,6 +39,7 @@ export class TicketPurchaseComponent implements OnInit {
       data => this.event = data,
       error => console.error('Error fetching event details', error)
     );
+    this.loading = false;
   }
 
   onSubmit(): void {
@@ -56,5 +58,10 @@ export class TicketPurchaseComponent implements OnInit {
       },
       error => console.error('Error adding guest', error)
     );
+  }
+
+  goBack(){
+    this.loading = true;
+    this.router.navigate(['/home']); 
   }
 }

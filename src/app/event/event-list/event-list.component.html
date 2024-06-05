@@ -23,12 +23,12 @@
           <td class="px-4 py-2">{{ event.name }}</td>
           <td class="px-4 py-2">{{ event.date | date: 'dd/MM/yy' }}</td>
           <td class="px-4 py-2">{{ event.location }}</td>
-          <td class="px-4 py-2">
-            {{ event.description | slice:0:50 }}{{ event.description.length > 50 ? '...' : '' }}
+          <td class="px-4 py-2" style="max-width: 400px;">            
+            <ng-container *ngIf="event.showFullDescription">{{ event.description }}</ng-container>
+            <ng-container *ngIf="!event.showFullDescription">{{ event.description | slice:0:50 }}{{ event.description.length > 50 ? '...' : '' }}</ng-container>
             <button *ngIf="event.description.length > 50" (click)="toggleDescription(event)" class="text-blue-500 ml-2">
               {{ event.showFullDescription ? 'Ver menos' : 'Ver más' }}
             </button>
-            <div *ngIf="event.showFullDescription">{{ event.description }}</div>
           </td>
           <td class="px-4 py-2">{{ event.guests.length }}</td>
           <td class="px-4 py-2 flex space-x-2 relative">
