@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GuestService } from '../../service/guest.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -7,11 +7,13 @@ import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { EventService } from '../../service/event.service';
 import { Event } from '../../models/event';
+import { MatIcon } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-guest-managment',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatIcon, MatMenuModule],
   templateUrl: './guest-managment.component.html',
   styleUrl: './guest-managment.component.scss'
 })
@@ -24,6 +26,7 @@ export class GuestManagmentComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private guestService: GuestService,
     private eventService: EventService
   ) { }
@@ -36,7 +39,6 @@ export class GuestManagmentComponent implements OnInit {
       }
     )
    
-
     if(this.eventId != null){
       await this.loadGuests();
     }
@@ -103,4 +105,16 @@ export class GuestManagmentComponent implements OnInit {
     doc.save(`${this.event!.name}-report.pdf`);
   }
 
+  goHome(){
+    this.router.navigate(['/home']);
+  }
+
+  async onDelete(id: string){
+    if(confirm("¿Quieres eliminar el invitado?")){
+      this.guestService.deleteGuest(this.event!.id, id).subscribe(
+        () => this.loadGuests(),
+        error => console.error('Error deleting event', error)
+      );
+    }
+  }
 }

@@ -26,6 +26,5 @@ export class AppComponent implements OnInit{
       }
     });
     this.isLogged = await this.authService.isAuthenticated();
-    console.log(this.isLogged)
   }
 }

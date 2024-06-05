@@ -40,7 +40,6 @@ export class EventService {
   }
 
   reminderMail(eventId: string): Observable<any> {
-    console.log("pasa")
     return this.http.post<any>(`${this.apiUrl}/${eventId}/Reminder`, {});
   }
 

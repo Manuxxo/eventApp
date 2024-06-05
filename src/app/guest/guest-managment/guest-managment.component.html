@@ -1,21 +1,28 @@
 <div class="container mx-auto px-4">
     <h2 class="text-2xl font-bold my-6 text-center">Entradas vendidas</h2>
-    <div class="mb-4 text-right">
+    <div class="mb-4 text-right flex justify-between">
+      <button class="bg-primary-color text-white font-bold py-2 px-4 rounded-lg flex items-center justify-center" (click)="goHome()"><mat-icon class="mr-2">arrow_back</mat-icon>Volver</button>
       <button class="text-white font-bold py-2 px-4 rounded bg-primary-color" (click)="downloadReport()">Descargar informe</button>
     </div>
-    <table class="table-auto w-full mt-6">
+    <table class="table-auto w-full bg-white shadow-md rounded-lg overflow-hidden">
       <thead>
-        <tr class="bg-gray-200">
-          <th class="px-4 py-2">Nombre</th>
-          <th class="px-4 py-2">Email</th>
-          <th class="px-4 py-2">Estado</th>
+        <tr class="bg-primary-color text-white">
+          <th class="px-4 py-2 text-left">Nombre</th>
+          <th class="px-4 py-2 text-left">Email</th>
+          <th class="px-4 py-2 text-left">Estado</th>
+          <th class="px-4 py-2 text-left"></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let guest of guests">
-          <td class="border px-4 py-2">{{ guest.name }}</td>
-          <td class="border px-4 py-2">{{ guest.email }}</td>
-          <td class="border px-4 py-2">{{ guest.status == "Attended" ? "Utilizada": "Comprada" }}</td>
+          <td class="px-4 py-2">{{ guest.name }}</td>
+          <td class="px-4 py-2">{{ guest.email }}</td>
+          <td class="px-4 py-2">{{ guest.status == "Attended" ? "Utilizada": "Comprada" }}</td>
+          <td class="px-4 py-2 flex space-x-2 relative">
+            <button (click)="onDelete(guest.id)">
+              <mat-icon>delete_forever</mat-icon>
+            </button>           
+          </td>
         </tr>
       </tbody>
     </table>
