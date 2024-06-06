@@ -73,7 +73,10 @@ export class EventListComponent {
   async onSendReminder(eventId: string) {
     if (confirm('¿Estás seguro de que deseas enviar un recordatorio a todos los invitados?')) {
       this.loading = true;
-     await this.eventService.reminderMail(eventId);
+     this.eventService.reminderMail(eventId).subscribe(
+      () => this.loadEvents(),
+      error => console.error('Error deleting event', error)
+    );
      this.loading = false;
     }
   }

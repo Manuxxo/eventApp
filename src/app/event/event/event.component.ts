@@ -59,6 +59,6 @@ export class EventComponent  implements OnInit {
 
   goBack(){
     this.loading = true;
-    this.router.navigate(['/home']); 
+    this.router.navigate(['/event/event-list']); 
   }
 }
